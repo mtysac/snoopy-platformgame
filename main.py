@@ -90,7 +90,7 @@ def play():
                             if event.key == pygame.K_w:  # JUMP NOT WORKING GRAVITY NOT WORKING NOOOO
                                 self.player.velocity[1] = -4
                             if event.key == pygame.K_ESCAPE:
-                                main_menu()
+                                main()
                         if event.type == pygame.KEYUP:
                             if event.key == pygame.K_a:
                                 self.movement[0] = False
@@ -137,7 +137,7 @@ def options():
 
         pygame.display.update()
 
-def main_menu():
+def main():
 
     pygame.mixer.music.load('data/startup.mp3')
     pygame.mixer.music.set_volume(0.6)
@@ -153,15 +153,6 @@ def main_menu():
         MENU_TEXT = get_font(115).render("SNOOPY!!!!", True, "#ffffff")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 170))
 
-        # with rect
-        #PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(245, 460), 
-                            #text_input="????", font=get_font(60), base_color="White", hovering_color="#a35c6a")
-        #OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(352, 350), 
-                            #text_input="CLICK ME", font=get_font(60), base_color="White", hovering_color="#a35c6a")
-        #QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(237, 570), 
-                            #text_input="byee", font=get_font(60), base_color="White", hovering_color="#a35c6a")
-
-        # without rect
         PLAY_BUTTON = Button(image=None, pos=(245, 350), #used to be y480, switched w options
                             text_input="START", font=get_font(60), base_color="#e7e4e4", hovering_color="#a35c6a")
         OPTIONS_BUTTON = Button(image=None, pos=(330, 480), #used to be y350
@@ -194,5 +185,5 @@ def main_menu():
                     sys.exit()
 
         pygame.display.update()
-
-main_menu()
+if __name__ == "__main__":
+    main()
