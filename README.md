@@ -2,6 +2,10 @@
 
 A 2D side-scrolling platformer built with Python and pygame. Includes a main menu, gameplay loop, and a tile-based level editor.
 
+## Disclaimer
+
+This is a fan project made for learning purposes. Not affiliated with or endorsed by Peanuts Worldwide. All artwork is original.
+
 ## Requirements
 
 - Python 3.x
