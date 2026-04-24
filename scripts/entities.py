@@ -83,22 +83,10 @@ class Player(PhysicsEntity):
         if self.collisions['down']:
             self.air_time = 0
 
-        #if self.air_time > 4: #this one isnt working
-            #self.set_action('jump')
-        elif movement[0] != 0: 
+        if self.air_time > 4:
+            self.set_action('jump')
+        elif movement[0] != 0:
             self.set_action('run')
         else:
             self.set_action('idle')
-            ### if self.air_time > 4:
-                ### self.set_action('jump')
-            ### else: 
-                ### movement[0] != 0 
-                ### self.set_action('run')
-
-        # if movement[0] != 0:
-            # self.set_action('run')
-        # elif self.air_time > 2:
-            # self.set_action('jump')
-        # else:
-            # self.set_action('idle')
 
