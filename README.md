@@ -98,5 +98,4 @@ Selecting **START** from the main menu opens a mode select screen:
 
 ## Known Issues
 
-- Jump animation doesn't trigger correctly (air time detection commented out)
 - `game.py` ESC key does not navigate back to a menu (game.py ONLY had the game)
