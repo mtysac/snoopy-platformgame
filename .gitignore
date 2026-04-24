@@ -9,3 +9,11 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# pytest
+.pytest_cache/
+
+# Editor
+.vscode/
+.idea/
+*.swp

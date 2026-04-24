@@ -1,35 +1,41 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING, Optional
+
 import pygame
 
+if TYPE_CHECKING:
+    from scripts.tilemap import Tilemap
+
 class PhysicsEntity:
-    def __init__(self, game, e_type, pos, size):
+    def __init__(self, game: object, e_type: str, pos: tuple[float, float], size: tuple[int, int]) -> None:
         self.game = game
         self.type = e_type
-        self.pos = list(pos)
+        self.pos: list[float] = list(pos)
         self.size = size
-        self.velocity = [0, 0]
-        self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
+        self.velocity: list[float] = [0, 0]
+        self.collisions: dict[str, bool] = {'up': False, 'down': False, 'right': False, 'left': False}
 
         self.action = ''
-        self.anim_offset = (-1, -1) # og -3, -3
+        self.anim_offset: tuple[int, int] = (-1, -1)
         self.flip = False
         self.set_action('idle')
 
-    def rect(self):
+    def rect(self) -> pygame.Rect:
         return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
 
-    def set_action(self, action):
+    def set_action(self, action: str) -> None:
         if action != self.action:
             self.action = action
             self.animation = self.game.assets[self.type + '/' + self.action].copy()
 
-    def update(self, tilemap, movement=(0, 0)):
+    def update(self, tilemap: Tilemap, movement: tuple[float, float] = (0, 0)) -> None:
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
 
         frame_movement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1])
 
         self.pos[0] += frame_movement[0]
         entity_rect = self.rect()
-        for rect in tilemap.physics_rects_around(self.pos): 
+        for rect in tilemap.physics_rects_around(self.pos):
             if entity_rect.colliderect(rect):
                 if frame_movement[0] > 0:
                     entity_rect.right = rect.left
@@ -41,7 +47,7 @@ class PhysicsEntity:
 
         self.pos[1] += frame_movement[1]
         entity_rect = self.rect()
-        for rect in tilemap.physics_rects_around(self.pos): 
+        for rect in tilemap.physics_rects_around(self.pos):
             if entity_rect.colliderect(rect):
                 if frame_movement[1] > 0:
                     entity_rect.bottom = rect.top
@@ -63,20 +69,21 @@ class PhysicsEntity:
 
             self.animation.update()
 
-    def render(self, surf, offset=(0, 0), tint=None):
+    def render(self, surf: pygame.Surface, offset: tuple[int, int] = (0, 0), tint: Optional[tuple[int, int, int]] = None) -> None:
         img = pygame.transform.flip(self.animation.img(), self.flip, False)
         if tint:
             tinted = img.copy()
             tinted.fill(tint, special_flags=pygame.BLEND_RGB_ADD)
             img = tinted
         surf.blit(img, (self.pos[0] - offset[0] + self.anim_offset[0], self.pos[1] - offset[1] + self.anim_offset[1]))
-        
-class Player(PhysicsEntity):
-    def __init__(self, game, pos, size, e_type='p1'):
-        super().__init__(game, e_type, pos, size)
-        self.air_time = 0
 
-    def update(self, tilemap, movement=(0, 0)):
+
+class Player(PhysicsEntity):
+    def __init__(self, game: object, pos: tuple[float, float], size: tuple[int, int], e_type: str = 'p1') -> None:
+        super().__init__(game, e_type, pos, size)
+        self.air_time: int = 0
+
+    def update(self, tilemap: Tilemap, movement: tuple[float, float] = (0, 0)) -> None:
         super().update(tilemap, movement=movement)
 
         self.air_time += 1
@@ -89,4 +96,3 @@ class Player(PhysicsEntity):
             self.set_action('run')
         else:
             self.set_action('idle')
-

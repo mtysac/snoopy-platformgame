@@ -9,11 +9,11 @@ This is a fan project made for learning purposes. Not affiliated with or endorse
 ## Requirements
 
 - Python 3.x
-- pygame
+- pygame-ce (recommended over pygame for Python 3.13+)
 
-Install pygame with:
+Install dependencies:
 ```
-pip install pygame-ce
+pip install pygame-ce pytest
 ```
 
 ## Running the Game
@@ -96,6 +96,20 @@ Selecting **START** from the main menu opens a mode select screen:
 - **food** — decorative off-grid collectible sprites
 - **back** — background decoration tiles
 
+## Testing
+
+Tests cover the `Animation` class in `scripts/utils.py`. Run them with:
+
+```
+pytest tests/
+```
+
+CI runs automatically on every push and pull request via GitHub Actions (`.github/workflows/ci.yml`).
+
+## Notes
+
+Type hints were added throughout the codebase as part of learning from CS1001: Intro to Programming.
+
 ## Known Issues
 
-- `game.py` ESC key does not navigate back to a menu (game.py ONLY had the game)
+- `game.py` ESC key does not navigate back to a menu (`game.py` is a standalone file with no menu)
