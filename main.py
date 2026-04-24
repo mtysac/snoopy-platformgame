@@ -74,8 +74,15 @@ def play(num_players=1):
                 while True:
                     self.display.fill((195, 220, 255))
 
-                    self.scroll[0] += (self.player.rect().centerx - self.display.get_width() / 2 - self.scroll[0]) / 30
-                    self.scroll[1] += (self.player.rect().centery - self.display.get_height() / 2 - self.scroll[1]) / 30
+                    if self.num_players == 2:
+                        target_x = (self.player.rect().centerx + self.player2.rect().centerx) / 2
+                        target_y = (self.player.rect().centery + self.player2.rect().centery) / 2
+                    else:
+                        target_x = self.player.rect().centerx
+                        target_y = self.player.rect().centery
+
+                    self.scroll[0] += (target_x - self.display.get_width() / 2 - self.scroll[0]) / 30
+                    self.scroll[1] += (target_y - self.display.get_height() / 2 - self.scroll[1]) / 30
                     render_scroll = (int(self.scroll[0]), int(self.scroll[1]))
 
                     self.clouds.update()
