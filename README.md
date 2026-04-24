@@ -9,7 +9,7 @@ A 2D side-scrolling platformer built with Python and pygame. Includes a main men
 
 Install pygame with:
 ```
-pip install pygame
+pip install pygame-ce
 ```
 
 ## Running the Game
@@ -32,13 +32,20 @@ python editor.py
 
 ## Controls
 
-### Gameplay
+### Gameplay — Player 1
 | Key | Action |
 |-----|--------|
 | A | Move left |
 | D | Move right |
 | W | Jump |
 | ESC | Return to main menu |
+
+### Gameplay — Player 2 (2-player mode only)
+| Key | Action |
+|-----|--------|
+| ← | Move left |
+| → | Move right |
+| ↑ | Jump |
 
 ### Level Editor
 | Key / Input | Action |
@@ -71,6 +78,13 @@ python editor.py
 └── assets/              # Menu fonts and UI images
 ```
 
+## Game Modes
+
+Selecting **START** from the main menu opens a mode select screen:
+
+- **1 Player** — solo play using Player 1's sprites (WASD)
+- **2 Players** — local co-op, Player 1 uses WASD and Player 2 uses arrow keys, each with their own character sprites
+
 ## Tile Types
 
 - **grass** — physics-enabled ground tile with autotiling support
@@ -81,4 +95,4 @@ python editor.py
 ## Known Issues
 
 - Jump animation doesn't trigger correctly (air time detection commented out)
-- `game.py` ESC key does not navigate back to a menu
+- `game.py` ESC key does not navigate back to a menu (game.py ONLY had the game)

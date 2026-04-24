@@ -63,12 +63,17 @@ class PhysicsEntity:
 
             self.animation.update()
 
-    def render(self, surf, offset=(0, 0)):
-        surf.blit(pygame.transform.flip(self.animation.img(), self.flip, False), (self.pos[0] - offset[0] + self.anim_offset[0], self.pos[1] - offset[1] + self.anim_offset[1]))
+    def render(self, surf, offset=(0, 0), tint=None):
+        img = pygame.transform.flip(self.animation.img(), self.flip, False)
+        if tint:
+            tinted = img.copy()
+            tinted.fill(tint, special_flags=pygame.BLEND_RGB_ADD)
+            img = tinted
+        surf.blit(img, (self.pos[0] - offset[0] + self.anim_offset[0], self.pos[1] - offset[1] + self.anim_offset[1]))
         
-class Player(PhysicsEntity)    :
-    def __init__(self, game, pos, size):
-        super().__init__(game, 'player', pos, size)
+class Player(PhysicsEntity):
+    def __init__(self, game, pos, size, e_type='p1'):
+        super().__init__(game, e_type, pos, size)
         self.air_time = 0
 
     def update(self, tilemap, movement=(0, 0)):
