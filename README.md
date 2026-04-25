@@ -6,6 +6,8 @@ A 2D side-scrolling platformer built with Python and pygame. Includes a main men
 
 This is a fan project made for learning purposes. Not affiliated with or endorsed by Peanuts Worldwide. All artwork is original.
 
+The code and original assets are MIT licensed (see `LICENSE`). The character design is inspired by Snoopy (Peanuts Worldwide) and is not covered by this license.
+
 ## Requirements
 
 - Python 3.x
