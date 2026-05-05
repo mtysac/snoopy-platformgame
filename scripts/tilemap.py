@@ -3,6 +3,8 @@ from typing import Any
 
 import pygame
 
+from scripts.protocols import GameProtocol
+
 AUTOTILE_MAP: dict[tuple, int] = {
     tuple(sorted([(1, 0), (0, 1)])): 0,
     tuple(sorted([(1, 0), (0, 1), (-1, 0)])): 1,
@@ -21,7 +23,7 @@ AUTOTILE_TYPES: set[str] = {'grass', 'stone'}
 
 
 class Tilemap:
-    def __init__(self, game: object, tile_size: int = 32) -> None:
+    def __init__(self, game: GameProtocol, tile_size: int = 32) -> None:
         self.game = game
         self.tile_size = tile_size
         self.tilemap: dict[str, Any] = {}

@@ -3,11 +3,13 @@ from typing import TYPE_CHECKING, Optional
 
 import pygame
 
+from scripts.protocols import GameProtocol
+
 if TYPE_CHECKING:
     from scripts.tilemap import Tilemap
 
 class PhysicsEntity:
-    def __init__(self, game: object, e_type: str, pos: tuple[float, float], size: tuple[int, int]) -> None:
+    def __init__(self, game: GameProtocol, e_type: str, pos: tuple[float, float], size: tuple[int, int]) -> None:
         self.game = game
         self.type = e_type
         self.pos: list[float] = list(pos)
@@ -79,7 +81,7 @@ class PhysicsEntity:
 
 
 class Player(PhysicsEntity):
-    def __init__(self, game: object, pos: tuple[float, float], size: tuple[int, int], e_type: str = 'p1') -> None:
+    def __init__(self, game: GameProtocol, pos: tuple[float, float], size: tuple[int, int], e_type: str = 'p1') -> None:
         super().__init__(game, e_type, pos, size)
         self.air_time: int = 0
 
