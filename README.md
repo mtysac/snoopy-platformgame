@@ -17,7 +17,7 @@ The code and original assets are MIT licensed (see `LICENSE`). The character des
 
 Install dependencies:
 ```
-pip install pygame-ce pytest
+pip install pygame-ce pytest mypy
 ```
 
 ## Running the Game
@@ -73,7 +73,8 @@ python editor.py
 │   ├── clouds.py        # Background cloud system
 │   ├── editor.py        # Level editor
 │   ├── button.py        # UI button component
-│   └── utils.py         # Image/animation loading helpers
+│   ├── utils.py         # Image/animation loading helpers
+│   └── protocols.py     # GameProtocol type definition
 ├── tests/
 │   ├── test_animation.py
 │   ├── test_entities.py
@@ -108,17 +109,23 @@ Selecting **START** from the main menu opens a mode select screen:
 pytest tests/
 ```
 
+Type checking is enforced with mypy:
+
+```
+mypy scripts/
+```
+
 | File | Coverage |
 |------|----------|
 | `tests/test_animation.py` | Looping/non-looping frame advance, copy independence, correct frame returned |
 | `tests/test_entities.py` | Rect position, gravity, gravity cap, downward collision detection, velocity reset on collision, no false collisions, flip direction |
 | `tests/test_tilemap.py` | Save/load roundtrip, tile size preservation, empty map load, neighbor tile lookup, physics rect generation for grass/cement, non-physics tile exclusion |
 
-CI runs automatically on every push and pull request via GitHub Actions (`.github/workflows/ci.yml`).
+CI runs automatically on every push and pull request via GitHub Actions (`.github/workflows/ci.yml`), running both `pytest` and `mypy`.
 
 ## Notes
 
-Type hints were added throughout the codebase as part of learning from CS1001: Intro to Programming.
+Type hints are enforced via `mypy` (see `mypy.ini`). Added as part of learning from CS1001: Intro to Programming.
 
 ## Known Issues
 
