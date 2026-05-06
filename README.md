@@ -130,3 +130,7 @@ Type hints are enforced via `mypy` (see `mypy.ini`). Added as part of learning f
 ## Known Issues
 
 - `game.py` has been removed; all gameplay now runs through `main.py`
+
+## License
+
+MIT © Maria Cabrera
