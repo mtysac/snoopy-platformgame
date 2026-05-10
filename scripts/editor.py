@@ -1,9 +1,12 @@
 import sys
+import os
 
 import pygame
 
-from utils import load_images
-from tilemap import Tilemap
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from scripts.utils import load_images
+from scripts.tilemap import Tilemap
 
 RENDER_SCALE = 2.0
 
